@@ -1,0 +1,116 @@
+---
+title: "eSportsVisualizations"
+author: "Andhy Gomez"
+date: "1/13/2021"
+output: html_document
+---
+
+```{r}
+# Install Packages
+install.packages("tidyverse")
+```
+
+# Load libraries
+```{r}
+# Load the tidyverse
+library(tidyverse)
+```
+
+```{r}
+champs <- read.csv("wc_champions.csv")
+
+head(champs)
+```
+
+```{r}
+betterchamps <- subset(champs, sum_total >= 10)
+```
+
+
+```{r}
+ggplot(data = betterchamps, mapping = aes(x = champion, y = sum_total, fill = champion)) +
+        geom_col(show.legend = FALSE) +
+        theme(axis.text.x = element_text(angle = 90, hjust = .5, vjust = .2)) +
+        labs(title = "Games Played Per Champion",
+             subtitle = "World Championship 2019",
+             x = "Wins",
+             y = "Champion",
+             caption = "*Champions with 10+ appearances")+ 
+        theme(panel.background = element_blank())
+```
+Fig-1: Bar chart showing the total amount of games each champion was used in during the tournament. This visualization highlights the meta at the time of the championship as well as which champions professional players find most vital to a successful team composition. The 5 most popular champions were Kai'Sa (71), Lee Sin (58), Xayah (57), Nautilus (52), and Gragas (49).
+
+
+```{r}
+ggplot(data = betterchamps, mapping = aes(x = champion, y = win_total)) +
+        geom_point(show.legend = FALSE, size = 1, mapping = aes(color = champion)) +
+        theme(axis.text.x = element_text(angle = 90, hjust = .5, vjust = .2)) +
+        labs(title = "Games Won Per Champion",
+             subtitle = "World Championship 2019",
+             x = "Champion",
+             y = "Wins",
+             caption = "*Champions with 10+ appearances") +
+        theme(panel.background = element_blank())
+```
+Fig-2: Scatter plot showing the total amount of games each champion won during the tournament. Paired with the bar chart this visualization is important to be able to see the amount of games won by each of the most popular champions. It stands to reason that the most used champion in the entirety of the tournament Kai'Sa also has the highest win share of games. However although this champion led byfar with most games played their wins end up much closer to the other lesser played champions than one would initially expect.
+
+```{r}
+top5Champs <- subset(champs, X <= 5)
+head(top5Champs)
+```
+```{r}
+counts <- table(top5Champs$winrate_total)
+classes <- paste(names(table(top5Champs$champion)))
+
+
+
+pie(counts, labels = classes, main = "Pie")
+```
+Fig-3: A pie chart showing the overall win rate of some of the more prominent champions used during the tournament. Although Gragas is the least popular of the top champions he has the highest win rate percentage even when compared to Nautilus who appeared in a similar amount of matches
+
+```{r}
+players <- read.csv("wc_players.csv")
+players$position <- as.factor(players$position)
+players$champion <- as.factor(players$champion)
+ADCplayers <- subset(players, position == "ADC")
+head(ADCplayers)
+```
+
+
+```{r}
+counts <- table(ADCplayers$champion)
+classes <- paste(names(counts))
+
+pie(counts, labels = classes, main = "ADC Champion Spread")
+```
+Fig-3-2: A pie chart displaying the spread of Cahmpions picked for the ADC role. This visualization serves to show the dominance and popularity of Kai'Sa and Xayah vs the other 25+ champions that can fulfill the role.
+
+```{r}
+top10Champs <- subset(champs, X <= 10)
+```
+
+
+```{r}
+top10Champs$champion <- ordered(top10Champs$champion, levels = c("Kai'Sa", "Lee Sin", "Xayah", "Nautilus", "Gragas", "Rakan", "Gangplank", "Ryze", "Thresh", "Akali"))
+```
+
+```{r}
+ggplot(data = top10Champs, mapping = aes(x = champion)) +
+        geom_line(mapping = aes(y = lose_total, color = "darkred")) +
+        geom_line(mapping = aes(y = win_total, color = "steelblue")) +
+        labs(title = "Games Won Per Champion",
+             subtitle = "World Championship 2019",
+             x = "Champion",
+             y = "Wins",
+             caption = "*Top 10 most used champions") +
+        theme(panel.background = element_blank())
+```
+
+
+
+
+
+
+
+
+

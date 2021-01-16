@@ -10,7 +10,7 @@ Fig-1: Bar chart showing the total amount of games each champion was used in dur
 Fig-2: Scatter plot showing the total amount of games each champion won during the tournament. Paired with the bar chart this visualization is important to be able to see the amount of games won by each of the most popular champions. It stands to reason that the most used champion in the entirety of the tournament Kai'Sa also has the highest win share of games. However although this champion led by far with most games played their wins end up much closer to the other lesser played champions than one would initially expect.
 
 
-![JFrameSS](https://raw.githubusercontent.com/AndhyGomez/eSports_Visualizations/main/images/pie.png?token=ALHFA6LFEDFWCKID4237XF2776WGG)
+![JFrameSS](https://raw.githubusercontent.com/AndhyGomez/eSports_Visualizations/main/images/piev2.png)
 
 Fig-3: A pie chart showing the overall win rate of some of the more prominent champions used during the tournament. Although Gragas is the least popular of the top champions he has the highest win rate percentage even when compared to Nautilus who appeared in a similar amount of matches
 

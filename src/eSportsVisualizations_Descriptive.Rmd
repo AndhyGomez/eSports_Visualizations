@@ -1,0 +1,121 @@
+---
+title: "eSportsVisualizations_Descriptive"
+author: "Andhy Gomez"
+date: "1/19/2021"
+output: html_document
+---
+
+```{r}
+# Install Packages
+install.packages("tidyverse")
+```
+
+# Load libraries
+```{r}
+# Load the tidyverse
+library(tidyverse)
+```
+```{r}
+library(RColorBrewer)
+```
+
+```{r}
+champs <- read.csv("wc_champions.csv")
+
+head(champs)
+```
+
+```{r}
+matches <- read.csv("wc_matches.csv")
+
+matches$date <- as.Date.factor(matches$date)
+
+head(matches)
+```
+
+# Box Plot
+```{r}
+betterchamps <- subset(champs, sum_total >= 10)
+```
+
+```{r}
+boxplot(betterchamps$sum_total,
+main = "Total games played per champion",
+sub = "At least 10 appearances",
+xlab = "Games Played",
+ylab = "Champions",
+col = "gold",
+border = "steel blue",
+horizontal = TRUE,
+notch = TRUE
+)
+```
+Fig. 1:
+This box plot shows relevant information regarding games played by each champion. It is important because it easily shows a median of roughly twenty games played among all champions with the outlier at 71 being Kai'sa who was by far the most used champion.
+
+
+Violin Plot
+```{r}
+players <- read.csv("wc_players.csv")
+
+players$date <- as.factor(players$date)
+
+players$gamelength <- as.factor(players$gamelength)
+
+playersShortened <- subset(players, X <= 200)
+
+head(playersShortened)
+```
+
+```{r}
+ggplot(playersShortened, aes(x = date, y = teamkills, color = date)) + 
+  geom_violin(show.legend = FALSE) +
+  stat_summary(fun = median, geom = "point", size = 1, color = "red") +
+   labs(title = "Team Kills Throughout LOL WC2019",
+             subtitle = "World Championship 2019",
+             x = "Date",
+             y = "Team Kills") +
+        theme(panel.background = element_blank(),
+                axis.text.x = element_blank())
+```
+
+Fig. 2:
+Violin plot that highlights the amount of team kills throughout this tournament and the median each day. This visualization serves to exemplify mistakes made by teams at the most grandiose stage of all in terms of League of Legends professional esports.
+
+Histogram
+```{r}
+ggplot(data=players, aes(teamkills)) + 
+  geom_histogram(binwidth = 3, color = "dark red", fill = "purple") +
+  geom_vline(aes(xintercept = mean(teamkills)),
+            color="green", linetype="dashed", size=2) +
+  labs(title = "Team Kill Analysis",
+        subtitle = "LOL World Championship 2019",
+        x = "Number of Team Kills",
+        y = "Count",
+        theme(panel.background = element_blank()))
+```
+Fig. 3:
+This histogram shows the amount of times each number of team kills was seen throughout the world championship, the blue dashed line, the visualization quickly highlights the mean amount of team kills for the whole tournament which sits at 13. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

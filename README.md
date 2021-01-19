@@ -18,3 +18,19 @@ Fig-3: A pie chart showing the overall win rate of some of the more prominent ch
 ![JFrameSS](https://raw.githubusercontent.com/AndhyGomez/eSports_Visualizations/main/images/lineoof.png?token=ALHFA6J7FNP66OMPTRB257S776WG4)
 
 Fig-4: I attempted to create a line graph showing losses per champion and wins per champions but was unsuccessful due to needing continuous data which my data set did not have. Ideally this would have been able to properly exemplify win rate for each of the 10 most used champions in the tournament.
+
+
+![JFrameSS](https://raw.githubusercontent.com/AndhyGomez/eSports_Visualizations/main/images/boxplot.png)
+
+Fig-5: This box plot shows relevant information regarding games played by each champion. It is important because it easily shows a median of roughly twenty games played among all champions with the outlier at 71 being Kai'sa who was by far the most used champion.
+
+
+![JFrameSS](https://raw.githubusercontent.com/AndhyGomez/eSports_Visualizations/main/images/Violin.png)
+
+Fig-6: This violin plot that highlights the amount of team kills throughout this tournament and the median each day. This visualization serves to exemplify mistakes made by teams at the most grandiose stage of all in terms of League of Legends professional esports.
+
+
+![JFrameSS](https://raw.githubusercontent.com/AndhyGomez/eSports_Visualizations/main/images/histogram.png)
+Fig-7: This histogram shows the amount of times each number of team kills was seen throughout the world championship, the blue dashed line, the visualization quickly highlights the mean amount of team kills for the whole tournament which sits at 13. 
+
+
